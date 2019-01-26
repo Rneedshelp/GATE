@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "595567133418",
+    "firebase_url": "https://utilityapp1.firebaseio.com",
+    "project_id": "utilityapp1",
+    "storage_bucket": "utilityapp1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595567133418:android:8287a4c9065a3f57",
+        "android_client_info": {
+          "package_name": "com.example.richard.gate_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595567133418-6pkfokpqk9dn700vg8fdt1odj5h3upcs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.richard.gate_app",
+            "certificate_hash": "450cf096675c0d57334c5230eb74f26ce742af40"
+          }
+        },
+        {
+          "client_id": "595567133418-60qjuqebsu1ov8cnldeknqo55hml8iop.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyOnN2CAFgJodQ_ceOzOCcP3Z7IzKAxpM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595567133418-60qjuqebsu1ov8cnldeknqo55hml8iop.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
