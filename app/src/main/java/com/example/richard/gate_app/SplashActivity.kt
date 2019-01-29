@@ -13,18 +13,22 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
 
-        setContentView(R.layout.activity_splash)
         super.onCreate(savedInstanceState, persistentState)
+        setContentView(R.layout.activity_splash)
+
         delayhandler = Handler()
 
         delayhandler!!.postDelayed(runnable,delay)
 
     }
 
-    internal val runnable : Runnable = Runnable{
+    internal val runnable : Runnable = Runnable {
+        if (!isFinishing) {
 
-      val intent = Intent(this,SplashActivity::class.java)
-        startActivity(intent)
-        finish()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
+
 }

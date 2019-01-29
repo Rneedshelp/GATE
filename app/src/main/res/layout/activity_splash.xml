@@ -10,5 +10,5 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="432dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="160dp"
-            android:backgroundTint="@color/colorlight"/>
+            android:backgroundTint="@color/colorAccent"/>
 </android.support.constraint.ConstraintLayout>
