@@ -12,12 +12,14 @@ class SplashActivity : AppCompatActivity() {
     private val delay : Long = 5000
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
         setContentView(R.layout.activity_splash)
 
         delayhandler = Handler()
 
         delayhandler?.postDelayed(runnable,delay)
+
+
+        super.onCreate(savedInstanceState, persistentState)
     }
 
     internal val runnable : Runnable = Runnable{
