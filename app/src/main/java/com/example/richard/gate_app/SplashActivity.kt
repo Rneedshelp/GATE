@@ -23,8 +23,8 @@ class SplashActivity : AppCompatActivity() {
 
     internal val runnable : Runnable = Runnable{
 
-        val i  = Intent(this,SplashActivity::class.java)
-        startActivity(i)
+      intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
         finish()
     }
 }
