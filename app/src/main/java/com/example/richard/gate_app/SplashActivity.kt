@@ -9,23 +9,22 @@ import android.support.v7.app.AppCompatActivity
 
 class SplashActivity : AppCompatActivity() {
     private var delayhandler: Handler? = null
-    private val delay : Long = 5000
+    private val delay : Long = 100000
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        setContentView(R.layout.activity_splash)
 
+        setContentView(R.layout.activity_splash)
+        super.onCreate(savedInstanceState, persistentState)
         delayhandler = Handler()
 
-        delayhandler?.postDelayed(runnable,delay)
+        delayhandler!!.postDelayed(runnable,delay)
 
-
-        super.onCreate(savedInstanceState, persistentState)
     }
 
     internal val runnable : Runnable = Runnable{
 
-        intent = Intent(this,SplashActivity::class.java)
-        startActivity(intent)
+        val i  = Intent(this,SplashActivity::class.java)
+        startActivity(i)
         finish()
     }
 }
