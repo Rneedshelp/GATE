@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity
 
 class SplashActivity : AppCompatActivity() {
     private var delayhandler: Handler? = null
-    private val delay : Long = 100000
+    private val delay : Long = 3000
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
 
@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
 
     internal val runnable : Runnable = Runnable{
 
-      intent = Intent(this,MainActivity::class.java)
+      val intent = Intent(this,SplashActivity::class.java)
         startActivity(intent)
         finish()
     }
