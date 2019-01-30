@@ -15,18 +15,25 @@ class SplashActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState, persistentState)
         setContentView(R.layout.activity_splash)
+        val background = object : Thread() {
+            override fun run() {
+                try {
+                    // Thread will sleep for 5 seconds
+                    Thread.sleep((10 * 1000).toLong())
 
-        delayhandler = Handler()
+                    // After 5 seconds redirect to another intent
+                    val i = Intent(baseContext, MainActivity::class.java)
+                    startActivity(i)
+                    //Remove activity
+                    finish()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
 
-        delayhandler!!.postDelayed(runnable,delay)
-
-    }
-
-    internal val runnable : Runnable = Runnable {
-            intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-
+            }
+        }
+        // start thread
+        background.start()
     }
 
 }
