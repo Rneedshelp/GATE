@@ -19,7 +19,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"/>
 
     <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
-    android:id="@+id/splash_gif"
+    android:id="@+id/splash_bg"
+               android:src=""
 
 
 
