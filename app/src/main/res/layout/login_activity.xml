@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LogInActivity">
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Username"
+            android:hint="  Username  "
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" android:visibility="visible"
+            android:textStyle="bold" android:textAlignment="center" android:textSize="36sp"
+            android:typeface="sans" android:foregroundTint="@color/colorAccent"
+            android:background="@color/colorPrimaryDark"
+            android:layout_centerInParent="true"
+            android:shadowColor="@color/colorPrimaryDark"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/password_input" android:hint="  Password  "
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" android:visibility="visible"
+            android:textStyle="bold" android:textAlignment="center" android:textSize="36sp"
+            android:typeface="sans" android:foregroundTint="@color/colorAccent"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/Username"
+            android:layout_centerInParent="true"
+
+            android:background="@color/colorPrimaryDark"
+            android:shadowColor="@color/colorPrimaryDark"/>
+    <Button
+            android:text="Login"
+            android:textColorHint="@color/colorPrimary"
+            android:outlineSpotShadowColor="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/login_button"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/password_input"
+            android:layout_centerInParent="true"/>
+    <Button
+            android:text="Register"
+            android:textColorHint="@color/colorPrimary"
+            android:outlineSpotShadowColor="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/reg_button"
+            android:layout_below="@+id/login_button"
+            android:layout_centerInParent="true"/>
+
+</RelativeLayout>
