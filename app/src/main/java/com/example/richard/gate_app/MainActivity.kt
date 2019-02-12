@@ -10,5 +10,19 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
         super.onCreate(savedInstanceState)
+        navigation.setOnNavigationItemReselectedListener {
+
+            when(it.itemId){
+                R.id.navigation_friends -> {
+                    true
+                }
+
+                R.id.navigation_settings->{
+                    //todo
+                    true
+                }
+
+            }
+        }
     }
 }
