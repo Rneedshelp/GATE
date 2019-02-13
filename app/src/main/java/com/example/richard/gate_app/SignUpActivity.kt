@@ -31,7 +31,6 @@ class SignUpActivity : AppCompatActivity(){
                 signup_pass.setError("Can't be empty")
             }
             else{
-
                 newuser.createUserWithEmailAndPassword(email_input.text.toString(),signup_pass.text.toString())
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
