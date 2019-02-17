@@ -14,15 +14,6 @@ class LogInActivity : AppCompatActivity(){
 
         setContentView(R.layout.login_activity)
         super.onCreate(savedInstanceState)
-        val user = FirebaseAuth.getInstance()
-        val fb : FirebaseUser? = user.currentUser
-        if(fb!!.isEmailVerified && user!=null)
-        {
-            startActivity<SignUpActivity>()
-        }
-        else
-        {
-            startActivity<MainActivity>()
-        }
+
     }
 }

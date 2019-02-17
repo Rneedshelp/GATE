@@ -9,10 +9,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.login_activity.*
+import org.jetbrains.anko.coroutines.experimental.asReference
+import org.jetbrains.anko.email
 import org.jetbrains.anko.startActivity
+import java.sql.Ref
 import kotlin.math.sign
+import android.R.attr.name
+
+
 
 
 class SignUpActivity : AppCompatActivity(){
@@ -27,22 +35,22 @@ class SignUpActivity : AppCompatActivity(){
             if(TextUtils.isEmpty(email_input.text)){
             email_input.setError("Can't be empty")
             }
-            else if(TextUtils.isEmpty(signup_pass.text)) {
+            else if(TextUtils.isEmpty(signup_pass.text) || signup_pass.text.length < 6) {
                 signup_pass.setError("Can't be empty")
             }
             else{
                 newuser.createUserWithEmailAndPassword(email_input.text.toString(),signup_pass.text.toString())
                     .addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            createuser(it.result!!.user)
-                            if (newuser.currentUser!!.sendEmailVerification().isSuccessful) {
-                                startActivity<MainActivity>()
-                                finish()
+                        if(it.isSuccessful) {
+                            if(it.result!!.user.sendEmailVerification().isSuccessful) {
+                                createuser(it.result!!.user)
                             }
-                        } else {
 
                         }
-
+                        else {
+                            startActivity<LogInActivity>()
+                            finish()
+                        }
                     }
             }
 
@@ -53,15 +61,20 @@ class SignUpActivity : AppCompatActivity(){
         val username = userid_input.text.toString()
        val pf : UserProfileChangeRequest = UserProfileChangeRequest.Builder()
            .setDisplayName(username).build()
-        user.updateProfile(pf).addOnCompleteListener{
-            if(it.isSuccessful)
-            {
-
-            }
-        }
 
 
+        var usersRef : DatabaseReference
+        val userData = HashMap<String?, String?>()
+
+        userData["name"] =  user.displayName
+        userData["Email"] = user.email
+        userData["Password"] = signup_pass.text.toString()
+
+
+        usersRef = FirebaseDatabase.getInstance().reference.child("users").child(username)
+        usersRef.setValue(userData)
     }
 
 
 }
+
