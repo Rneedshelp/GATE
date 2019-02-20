@@ -12,7 +12,7 @@
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/Username"
+            android:id="@+id/user_login_input"
             android:hint="  Username  "
             android:textAppearance="@style/TextAppearance.AppCompat.Display2" android:visibility="visible"
             android:textStyle="bold" android:textAlignment="center" android:textSize="36sp"
@@ -27,7 +27,7 @@
             android:textStyle="bold" android:textAlignment="center" android:textSize="36sp"
             android:typeface="sans" android:foregroundTint="@color/colorAccent"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:layout_below="@+id/Username"
+            android:layout_below="@+id/user_login_input"
             android:layout_centerInParent="true"
 
             android:background="@color/colorPrimaryDark"
@@ -41,13 +41,6 @@
             android:layout_margin="@dimen/activity_vertical_margin"
             android:layout_below="@+id/login_password_input"
             android:layout_centerInParent="true"/>
-    <Button
-            android:text="Register"
-            android:textColorHint="@color/colorPrimary"
-            android:outlineSpotShadowColor="@color/colorPrimaryDark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/login_register_button"
-            android:layout_below="@+id/login_button"
-            android:layout_centerInParent="true"/>
+
 
 </RelativeLayout>

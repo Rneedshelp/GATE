@@ -63,16 +63,16 @@ class SignUpActivity : AppCompatActivity(){
            .setDisplayName(username).build()
 
 
-        var usersRef : DatabaseReference
-        val userData = HashMap<String?, String?>()
+        var reference : DatabaseReference
+        val usermap = HashMap<String?, String?>()
 
-        userData["name"] =  user.displayName
-        userData["Email"] = user.email
-        userData["Password"] = signup_pass.text.toString()
+        usermap["name"] =  user.displayName
+        usermap["Email"] = user.email
+        usermap["Password"] = signup_pass.text.toString()
 
 
-        usersRef = FirebaseDatabase.getInstance().reference.child("users").child(username)
-        usersRef.setValue(userData)
+        reference = FirebaseDatabase.getInstance().reference.child("users").child(username)
+        reference.setValue(usermap)
     }
 
 
