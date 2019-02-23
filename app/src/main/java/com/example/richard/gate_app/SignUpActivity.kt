@@ -19,8 +19,10 @@ import org.jetbrains.anko.startActivity
 import java.sql.Ref
 import kotlin.math.sign
 import android.R.attr.name
-
-
+import android.nfc.Tag
+import android.util.Log
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import io.opencensus.tags.Tags
 
 
 class SignUpActivity : AppCompatActivity(){
@@ -31,7 +33,7 @@ class SignUpActivity : AppCompatActivity(){
         setContentView(R.layout.activity_signup)
         super.onCreate(savedInstanceState)
 
-        reg_button.setOnClickListener(){
+        reg_button.setOnClickListener{
             if(TextUtils.isEmpty(email_input.text)){
             email_input.setError("Can't be empty")
             }
@@ -42,14 +44,21 @@ class SignUpActivity : AppCompatActivity(){
                 newuser.createUserWithEmailAndPassword(email_input.text.toString(),signup_pass.text.toString())
                     .addOnCompleteListener {
                         if(it.isSuccessful) {
-                            if(it.result!!.user.sendEmailVerification().isSuccessful) {
-                                createuser(it.result!!.user)
-                            }
+                            it.result!!.user.sendEmailVerification()
+                            Log.d("don't","error: NEW USER CREATED")
+                            createuser(it.result!!.user)
+                            startActivity<LogInActivity>()
+                            finish()
 
                         }
                         else {
-                            startActivity<LogInActivity>()
-                            finish()
+                            try {
+                                throw it.exception!!
+                            }
+                            catch (dupe : FirebaseAuthUserCollisionException){
+                                Log.d("don't","error: EMAIL EXISTS ALREADY")
+                            }
+
                         }
                     }
             }
@@ -70,6 +79,7 @@ class SignUpActivity : AppCompatActivity(){
         usermap["Email"] = user.email
         usermap["Password"] = signup_pass.text.toString()
 
+        Log.d("don't","sucess: NEW USSER UP AND RUNNING")
 
         reference = FirebaseDatabase.getInstance().reference.child("users").child(username)
         reference.setValue(usermap)
