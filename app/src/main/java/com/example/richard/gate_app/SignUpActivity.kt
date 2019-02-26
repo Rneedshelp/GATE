@@ -79,7 +79,7 @@ class SignUpActivity : AppCompatActivity(){
         usermap["Email"] = user.email
         usermap["Password"] = signup_pass.text.toString()
 
-        Log.d("don't","sucess: NEW USSER UP AND RUNNING")
+        Log.d("don't","sucess: NEW USER UP AND RUNNING")
 
         reference = FirebaseDatabase.getInstance().reference.child("users").child(username)
         reference.setValue(usermap)

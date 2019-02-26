@@ -14,20 +14,21 @@ import org.jetbrains.anko.startActivity
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        val user = FirebaseAuth.getInstance().currentUser
         setContentView(R.layout.activity_splash)
         super.onCreate(savedInstanceState)
         splash_button.setOnClickListener {
+            startActivity<LogInActivity>()
+            finish()
 
-                val user = FirebaseAuth.getInstance().currentUser
-                if (user != null && user.isEmailVerified) {
-                    startActivity<LogInActivity>()
-                    finish()
-                }
-                else{
-                    startActivity<LogInActivity>()
-                    finish()
-                }
+            if (user != null && user.isEmailVerified) {
+                startActivity<LogInActivity>()
+                finish()
+            }
+            else{
+                startActivity<LogInActivity>()
+                finish()
+            }
 
 
         }

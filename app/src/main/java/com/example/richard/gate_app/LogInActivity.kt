@@ -13,16 +13,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.login_activity.*
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 
 class LogInActivity : AppCompatActivity(){
-   var security = false
     override fun onCreate(savedInstanceState: Bundle?) {
 
         setContentView(R.layout.login_activity)
         super.onCreate(savedInstanceState)
-        val user = FirebaseAuth.getInstance()
-
 
         login_button.setOnClickListener {
             if (TextUtils.isEmpty(user_login_input.text)) {
@@ -32,51 +30,59 @@ class LogInActivity : AppCompatActivity(){
                 login_password_input.setError("Can't be Empty")
             }
             else {
-
+                //call credentials first? to go to listener
+                //on the data change if found, go to main
+                //problem is the error afterwards
                 val username = user_login_input.text.toString()
                 val pass = login_password_input.text.toString()
-                    if(checkcredentials(username,pass)) {
-                        startActivity<MainActivity>()
-                        finish()
-                    }
-                    else{
-                        user_login_input.setError("Username does not exist")
-                        login_password_input.setError("Password does not exist")
-                    }
+                checkcredentials(username,pass)
+
             }
 
         }
 
-
     }
 
-    private fun checkcredentials(username : String, pass : String) : Boolean{
-//KEY VALUE = USERNAME
+    private fun checkcredentials(username : String, pass : String){
+        var security = false
         val credentials = FirebaseDatabase.getInstance().reference.child("users")
         credentials.addListenerForSingleValueEvent(object : ValueEventListener {
            override fun onCancelled(p0: DatabaseError) {
-
+               Log.d("don't","Error occured in Database!")
            }
 
            override fun onDataChange(p0: DataSnapshot) {
                p0.children.forEach{
-
                    if(it.key.toString() == username) {
-                       Log.d("don't",username)
-                       if(it.child("Password").value.toString() == pass){
-                           Log.d("don't",username)
-                           FirebaseAuth.getInstance().signInWithEmailAndPassword(it.child("Email").value.toString(),pass)
+                       if(it.child("Password").value==pass){
                            security = true
-                           return
+                           FirebaseAuth.getInstance().signInWithEmailAndPassword(it.child("Email").value.toString(),pass).addOnCompleteListener{
+                               keylock()
+                           }
+
+
                        }
                    }
 
                }
+               if(!security)
+               {
+                   user_login_input.setError("Username does not exist")
+                   login_password_input.setError("Password does not exist")
+                   Log.d("don't",security.toString())
+               }
+
 
            }
        })
-        Log.d("don't",security.toString())
-        return security
+
+
+
+    }
+
+    private fun keylock(){
+            startActivity<MainActivity>()
+            finish()
 
     }
 }
