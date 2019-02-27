@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+                name="user"
+                type="com.example.richard.gate_app.ViewModelClass"
+        />
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+tools:context=".ProfileFragment">
+
+</LinearLayout>
+</layout>

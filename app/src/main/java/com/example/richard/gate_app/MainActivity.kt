@@ -1,7 +1,9 @@
 package com.example.richard.gate_app
 
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -12,6 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        //val binding : ViewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        //binding.setLifecycleOwner(this) //adding lifecycle dependencies owner to main activity
         setContentView(R.layout.activity_main)
         super.onCreate(savedInstanceState)
         val newuser = FirebaseAuth.getInstance().currentUser
