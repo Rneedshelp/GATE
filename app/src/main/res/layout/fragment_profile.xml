@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View"/>
 
@@ -8,11 +10,27 @@
                 type="com.example.richard.gate_app.ViewModelClass"
         />
     </data>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<LinearLayout
+        android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
 tools:context=".ProfileFragment">
+
+    <TextView
+            android:text=""
+            android:layout_gravity="start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="139dp"
+            android:layout_height="61dp" android:id="@+id/username_textview" android:textSize="30sp"
+            android:layout_margin="200dp"/>
+    <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="@id/username_textview"
+            android:layout_height="wrap_content" android:id="@+id/email_textview"
+    />
 
 </LinearLayout>
 </layout>

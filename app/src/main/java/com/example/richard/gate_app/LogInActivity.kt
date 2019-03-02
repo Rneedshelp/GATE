@@ -83,7 +83,6 @@ class LogInActivity : AppCompatActivity(){
     private fun keylock(){
             startActivity<MainActivity>()
             finish()
-
     }
 }
 

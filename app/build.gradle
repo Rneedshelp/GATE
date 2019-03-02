@@ -5,7 +5,6 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -55,7 +54,6 @@ dependencies{
     def lifecycle_version = "2.0.0"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    kapt 'com.android.databinding:compiler:3.1.4'
     apply plugin: 'com.google.gms.google-services'
 
 }
