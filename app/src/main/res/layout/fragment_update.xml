@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+                name="user"
+                type="com.example.richard.gate_app.ViewModelClass"
+        />
+    </data>
+<LinearLayout
+              android:orientation="vertical"
+              tools:context=".UpdateProfileFragment"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/username_edit" android:hint="Username"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/password_edit" android:hint="Enter New Password"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/password_confirm" android:hint="Confirm New Password"/>
+    <Button
+            android:text="Update Profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/update_button"/>
+
+</LinearLayout>
+</layout>

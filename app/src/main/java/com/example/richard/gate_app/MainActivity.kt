@@ -12,13 +12,10 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //val binding : ViewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        //binding.setLifecycleOwner(this) //adding lifecycle dependencies owner to main activity
         setContentView(R.layout.activity_main)
         super.onCreate(savedInstanceState)
 
-        val newuser = FirebaseAuth.getInstance().currentUser
-        FirebaseAuth.getInstance().signOut()
+
 
         navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
@@ -31,6 +28,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_settings-> {
                    // supportFragmentManager.beginTransaction().replace(R.id.container_profile, ProfileFragment()).commit()
                     Log.d("don't","ON CLICKED SETTINGS")
+
                     supportFragmentManager.transaction { replace(R.id.container_profile, ProfileFragment()) }
                     true
                 }

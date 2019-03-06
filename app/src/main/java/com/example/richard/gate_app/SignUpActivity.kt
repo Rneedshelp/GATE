@@ -71,6 +71,8 @@ class SignUpActivity : AppCompatActivity(){
        val pf : UserProfileChangeRequest = UserProfileChangeRequest.Builder()
            .setDisplayName(username).build()
 
+        user.updateProfile(pf)
+
 
         var reference : DatabaseReference
         val usermap = HashMap<String?, String?>()
@@ -83,6 +85,8 @@ class SignUpActivity : AppCompatActivity(){
 
         reference = FirebaseDatabase.getInstance().reference.child("users").child(username)
         reference.setValue(usermap)
+        Log.d("WORK",user.displayName.toString())
+
     }
 
 
