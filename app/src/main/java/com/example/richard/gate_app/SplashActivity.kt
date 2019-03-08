@@ -18,11 +18,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         super.onCreate(savedInstanceState)
         splash_button.setOnClickListener {
-            startActivity<LogInActivity>()
-            finish()
-
             if (user != null && user.isEmailVerified) {
-                startActivity<LogInActivity>()
+                startActivity<SignUpActivity>()
                 finish()
             }
             else{

@@ -17,9 +17,15 @@ import androidx.fragment.app.FragmentTransaction
 
 import androidx.lifecycle.ViewModelProviders
 import com.example.richard.gate_app.databinding.FragmentProfileBinding
+import com.google.firebase.auth.AuthCredential
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_profile.*
+import org.jetbrains.anko.support.v4.startActivity
 
 
 class ProfileFragment : Fragment() {
@@ -48,10 +54,16 @@ class ProfileFragment : Fragment() {
             Log.d("WORK",user.displayName.toString())
             username_textview.setText(user.displayName)
             email_textview.setText( user.email)
+
+        }
+        else{
+            Log.d("WORK","user is null")
+
         }
 
         signout_button.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
+            startActivity<LogInActivity>()
         }
 
     }

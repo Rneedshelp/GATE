@@ -44,11 +44,13 @@ class SignUpActivity : AppCompatActivity(){
                 newuser.createUserWithEmailAndPassword(email_input.text.toString(),signup_pass.text.toString())
                     .addOnCompleteListener {
                         if(it.isSuccessful) {
-                            it.result!!.user.sendEmailVerification()
                             Log.d("don't","error: NEW USER CREATED")
                             createuser(it.result!!.user)
-                            startActivity<LogInActivity>()
-                            finish()
+                            it.result!!.user.sendEmailVerification().addOnCompleteListener{
+                                startActivity<LogInActivity>()
+                                finish()
+                            }
+
 
                         }
                         else {
@@ -74,12 +76,13 @@ class SignUpActivity : AppCompatActivity(){
         user.updateProfile(pf)
 
 
+
         var reference : DatabaseReference
         val usermap = HashMap<String?, String?>()
-
-        usermap["name"] =  user.displayName
+        usermap["Name"] =  ""
+        usermap["Phone"] = ""
         usermap["Email"] = user.email
-        usermap["Password"] = signup_pass.text.toString()
+        usermap["ID"] = user.uid
 
         Log.d("don't","sucess: NEW USER UP AND RUNNING")
 

@@ -54,27 +54,29 @@ class LogInActivity : AppCompatActivity(){
            override fun onDataChange(p0: DataSnapshot) {
                p0.children.forEach{
                    if(it.key.toString() == username) {
-                       if(it.child("Password").value==pass){
-                           security = true
                            FirebaseAuth.getInstance().signInWithEmailAndPassword(it.child("Email").value.toString(),pass).addOnCompleteListener{
-                               keylock()
+                               if(it.isSuccessful)
+                               {
+                                   security = true
+                                   keylock()
+                               }
+                               else
+                               {
+                                   login_password_input.setError("Password does not exist")
+                               }
                            }
 
 
-                       }
                    }
-
                }
-               if(!security)
-               {
-                   user_login_input.setError("Username does not exist")
-                   login_password_input.setError("Password does not exist")
-                   Log.d("don't",security.toString())
-               }
-
 
            }
        })
+        if(!security)
+        {
+            user_login_input.setError("Username does not exist")
+            Log.d("don't",security.toString())
+        }
 
 
 
