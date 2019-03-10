@@ -2,7 +2,10 @@ package com.example.richard.gate_app
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.text.InputType
+import android.text.InputType.TYPE_NUMBER_VARIATION_PASSWORD
 import android.text.TextUtils
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +23,8 @@ import com.google.firebase.auth.*
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_update.*
 import org.jetbrains.anko.support.v4.startActivity
+import java.net.PasswordAuthentication
+import java.security.KeyStore
 
 class UpdateProfileFragment : Fragment(){
 
@@ -44,18 +49,27 @@ class UpdateProfileFragment : Fragment(){
             else {
                 val dialogbox = AlertDialog.Builder(activity)
                 val pass = EditText(activity)
-                val confirmpass = Button(activity).setText("Confirm")
+                pass.transformationMethod = PasswordTransformationMethod.getInstance()
+
                 val layout = LinearLayout(activity)
                 layout.addView(pass)
-                dialogbox.setMessage("Enter your Password").setView(layout).setPositiveButton("Confirm"){dialog, which ->
+                dialogbox.setMessage("Enter your Password").setView(layout).setPositiveButton("Confirm"){_, _ ->
 
                     val cred = EmailAuthProvider.getCredential(user!!.email.toString(),pass.text.toString())
                     user.reauthenticate(cred).addOnCompleteListener {
                         if(it.isSuccessful){
-                            Log.d("GRRGE",email_edit.text.toString())
+
                             user.updateEmail(email_edit.text.toString()).addOnCompleteListener{
-                                if(it.isSuccessful)fragmentManager!!.beginTransaction()
-                                    .replace(R.id.container_profile,ProfileFragment()).addToBackStack(null).commit()
+                                if(it.isSuccessful){
+
+                                    FirebaseDatabase.getInstance().reference.child("users")
+                                        .child(user.displayName.toString()).child("Email")
+                                        .setValue(user.email).addOnCompleteListener{
+                                            fragmentManager!!.beginTransaction().replace(R.id.container_profile,ProfileFragment())
+                                                .addToBackStack(null).commit()
+                                        }
+
+                                }
                             }
                         }
                         else{
@@ -63,14 +77,12 @@ class UpdateProfileFragment : Fragment(){
                         }
                     }
 
-                }.setNegativeButton("Cancel"){dialog, which ->
-
+                }.setNegativeButton("Cancel"){dialog, _ ->
                     dialog.dismiss()
 
                 }
 
                 dialogbox.create().show()
-                //fragmentManager!!.beginTransaction().replace(R.id.container_profile,ConfirmFragment()).addToBackStack(null).commit()
 
             }
         }

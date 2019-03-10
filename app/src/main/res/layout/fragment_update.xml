@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:onTextChanged="@{(seq,start,end,count) -> user.ontextchange(seq)}"
             android:id="@+id/email_edit" android:hint="Email Address"/>
     <EditText
 
@@ -49,7 +48,7 @@
             android:layout_width="match_parent"
             style="@style/Base.AlertDialog.AppCompat.Light"
             android:layout_height="wrap_content" android:id="@+id/password_button"/>
-    
+
 
     <FrameLayout
             android:id="@+id/container_reauthorize"
