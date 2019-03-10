@@ -2,6 +2,7 @@ package com.example.richard.gate_app
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -19,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         splash_button.setOnClickListener {
             if (user != null && user.isEmailVerified) {
-                startActivity<SignUpActivity>()
+                startActivity<LogInActivity>()
                 finish()
             }
             else{

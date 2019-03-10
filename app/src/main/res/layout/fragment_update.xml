@@ -23,23 +23,45 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
+            android:onTextChanged="@{(seq,start,end,count) -> user.ontextchange(seq)}"
             android:id="@+id/email_edit" android:hint="Email Address"/>
     <EditText
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="phone"
             android:ems="10"
-            android:id="@+id/password_edit" android:hint="Enter New Password"/>
+            android:id="@+id/phone_edit" android:hint="Primary Phone Number"/>
     <EditText
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/password_confirm" android:hint="Confirm New Password"/>
+            android:id="@+id/name_edit" android:hint="First and Last Name"/>
+
     <Button
             android:text="Update Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/update_button"/>
+    <Button
+            android:text="Change Password"
+            android:layout_width="match_parent"
+            style="@style/Base.AlertDialog.AppCompat.Light"
+            android:layout_height="wrap_content" android:id="@+id/password_button"/>
+    
+
+    <FrameLayout
+            android:id="@+id/container_reauthorize"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+    </FrameLayout>
+    <FrameLayout
+            android:id="@+id/container_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+    </FrameLayout>
+
 
 </LinearLayout>
 </layout>
