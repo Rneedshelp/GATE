@@ -79,8 +79,6 @@ class SignUpActivity : AppCompatActivity(){
 
         var reference : DatabaseReference
         val usermap = HashMap<String?, String?>()
-        usermap["Name"] =  ""
-        usermap["Phone"] = ""
         usermap["Email"] = user.email
         usermap["ID"] = user.uid
 

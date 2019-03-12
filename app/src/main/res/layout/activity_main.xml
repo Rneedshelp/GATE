@@ -15,7 +15,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MainActivity">
-
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray"
+        />
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/navigation"
                 android:layout_width="0dp"
@@ -45,6 +50,14 @@
         </FrameLayout>
         <FrameLayout
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:id="@+id/container_friendslist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="parent" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+        </FrameLayout>
+        <FrameLayout
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:id="@+id/container_reauthorize"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" app:layout_constraintEnd_toEndOf="parent"
@@ -52,5 +65,8 @@
                 app:layout_constraintStart_toStartOf="parent">
         </FrameLayout>
 
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

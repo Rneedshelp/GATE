@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main)
         super.onCreate(savedInstanceState)
+        //val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+       // recyclerView.layoutManager = LinearLayoutManager(this)
 
 
 
@@ -21,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.navigation_friends -> {
                     Log.d("don't","ON CLICKED friends")
-                    supportFragmentManager.beginTransaction().remove(supportFragmentManager.findFragmentById(R.id.container_profile)!!).commit()
+                    supportFragmentManager.transaction { replace(R.id.container_friendslist, FriendsListFragment()) }
                     true
                 }
 
