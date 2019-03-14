@@ -5,6 +5,4 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-class ViewModelClass : ViewModel() {
-
-}
+class ViewModelClass : ViewModel()

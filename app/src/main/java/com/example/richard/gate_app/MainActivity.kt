@@ -3,6 +3,7 @@ package com.example.richard.gate_app
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
+import android.widget.LinearLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +26,9 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.navigation_friends -> {
                     Log.d("don't","ON CLICKED friends")
-                    supportFragmentManager.transaction { replace(R.id.container_friendslist, FriendsListFragment()) }
+
+                    supportFragmentManager.transaction { replace(R.id.container_profile, FriendListFragment()) }
+
                     true
                 }
 
