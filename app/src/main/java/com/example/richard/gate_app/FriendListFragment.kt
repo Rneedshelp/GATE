@@ -1,40 +1,64 @@
 package com.example.richard.gate_app
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.coroutines.experimental.asReference
+import org.jetbrains.anko.doAsync
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 class FriendListFragment : Fragment() {
-
-    fun FriendListFragment(){
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-       val  view : View = inflater.inflate(R.layout.fragment_recyclermain,container,false)
+
+        val view: View = inflater.inflate(R.layout.fragment_recyclermain, container, false)
         val recyclerview = view.findViewById<RecyclerView>(R.id.recyclerview_main)
         recyclerview.hasFixedSize()
-        val examplelist = ArrayList<FriendInfo>()
-        examplelist.add(FriendInfo("hello","test1"))
-        examplelist.add(FriendInfo("hello","test1"))
+        val friendlist = ArrayList<FriendInfo>()
 
-        examplelist.add(FriendInfo("hello","test1"))
+        val user = FirebaseAuth.getInstance().currentUser
 
-        examplelist.add(FriendInfo("hello","test1"))
+        val credentials = FirebaseDatabase.getInstance().reference.child("users")
+        val adap = FriendListAdapter(friendlist)
+        credentials.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                    Log.d("don't", "Error occured in Database!")
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    adap.notifyDataSetChanged()
+                    p0.children.forEach {
+                        if (it.key.toString() != user!!.displayName.toString()) {
+                            friendlist.add(FriendInfo(it.key.toString(), it.child("Email").value.toString()))
+                        }
+                    }
 
 
-        val adap = FriendListAdapter(examplelist)
+                }
+            })
+
         recyclerview.adapter = adap
-
-
-        val linearlayout = LinearLayoutManager(this.context)
+        val linearlayout = LinearLayoutManager(context)
         recyclerview.layoutManager = linearlayout
         return view
     }
+
+
+
+
 }

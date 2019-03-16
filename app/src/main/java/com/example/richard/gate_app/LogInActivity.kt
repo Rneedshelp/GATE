@@ -50,42 +50,35 @@ class LogInActivity : AppCompatActivity(){
            override fun onCancelled(p0: DatabaseError) {
                Log.d("don't","Error occured in Database!")
            }
-
            override fun onDataChange(p0: DataSnapshot) {
-               p0.children.forEach{
-                   if(it.key.toString() == username) {
-                           FirebaseAuth.getInstance().signInWithEmailAndPassword(it.child("Email").value.toString(),pass).addOnCompleteListener{
-                               if(it.isSuccessful)
-                               {
-                                   security = true
-                                   keylock()
-                               }
-                               else
-                               {
-                                   login_password_input.setError("Password does not exist")
-                               }
+               if (p0.hasChild(username)) {
+                   FirebaseAuth.getInstance().signInWithEmailAndPassword(p0.child(username).child("Email").value.toString(), pass)
+                       .addOnCompleteListener {
+                           if (it.isSuccessful) {
+                               startActivity<MainActivity>()
+                               finish()
+                           } else {
+                               login_password_input.setError("Password is incorrect!")
                            }
 
+                       }
 
-                   }
                }
-
+               else
+               {
+                   user_login_input.setError("Username does not Exist!")
+               }
            }
+
+
+
        })
-        if(!security)
-        {
-            user_login_input.setError("Username does not exist")
-            Log.d("don't",security.toString())
-        }
 
 
 
-    }
 
-    private fun keylock(){
-            startActivity<MainActivity>()
-            finish()
     }
 }
+
 
 
