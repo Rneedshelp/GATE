@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_recyclermain.*
 import org.jetbrains.anko.coroutines.experimental.asReference
 import org.jetbrains.anko.doAsync
 import java.util.concurrent.CountDownLatch
@@ -45,6 +48,8 @@ class FriendListFragment : Fragment() {
                     p0.children.forEach {
                         if (it.key.toString() != user!!.displayName.toString()) {
                             friendlist.add(FriendInfo(it.key.toString(), it.child("Email").value.toString()))
+
+
                         }
                     }
 
@@ -55,8 +60,12 @@ class FriendListFragment : Fragment() {
         recyclerview.adapter = adap
         val linearlayout = LinearLayoutManager(context)
         recyclerview.layoutManager = linearlayout
+        adap.onItemClick = {
+                friendInfo ->  Log.d("TAG",friendInfo.email)
+        }
         return view
     }
+
 
 
 

@@ -10,12 +10,8 @@ import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 
 class FriendListAdapter(private var friendslist : ArrayList<FriendInfo>) : RecyclerView.Adapter<FriendListAdapter.MainViewHolder>() {
+    var onItemClick: ((FriendInfo) -> Unit)? = null
 
-
-    fun FriendListAdapter(friendlist : ArrayList<FriendInfo>){
-        friendslist = friendlist
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendListAdapter.MainViewHolder {
         val view : View = LayoutInflater.from(parent.context).inflate(R.layout.frienditem,parent,false)
@@ -30,14 +26,20 @@ class FriendListAdapter(private var friendslist : ArrayList<FriendInfo>) : Recyc
         val friend : FriendInfo = friendslist.get(position)
         holder.username.text = friend.username
         holder.email.text = friend.email
+
+
     }
 
 
-    class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val username = itemView.findViewById<TextView>(R.id.friend_username)
             val email = itemView.findViewById<TextView>(R.id.friend_email)
 
-
+        init {
+            itemView.setOnClickListener {
+                onItemClick?.invoke(friendslist[adapterPosition])
+            }
+        }
 
 
 

@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_friends -> {
                     Log.d("don't","ON CLICKED friends")
                     supportFragmentManager.transaction { replace(R.id.container_profile, FriendListFragment()) }
+
                     true
                 }
 
