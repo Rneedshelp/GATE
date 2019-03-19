@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Task
@@ -60,13 +62,17 @@ class FriendListFragment : Fragment() {
         recyclerview.adapter = adap
         val linearlayout = LinearLayoutManager(context)
         recyclerview.layoutManager = linearlayout
+
+        //Pass user clicked on to chat frag, to ensure who you are sending to.
+        //Pass user from this frag to chat frag.
+        //
         adap.onItemClick = {
-                friendInfo ->  Log.d("TAG",friendInfo.email)
+                friendInfo -> fragmentManager!!.beginTransaction().replace(R.id.container_profile,ChatFragment())
+            .addToBackStack(null).commit()
+
         }
         return view
     }
-
-
 
 
 
