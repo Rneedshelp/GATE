@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 class FriendListAdapter(private var friendslist : ArrayList<FriendInfo>) : RecyclerView.Adapter<FriendListAdapter.MainViewHolder>() {
     var onItemClick: ((FriendInfo) -> Unit)? = null
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendListAdapter.MainViewHolder {
         val view : View = LayoutInflater.from(parent.context).inflate(R.layout.frienditem,parent,false)
         return MainViewHolder(view)

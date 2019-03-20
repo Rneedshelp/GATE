@@ -49,9 +49,9 @@ class FriendListFragment : Fragment() {
                     adap.notifyDataSetChanged()
                     p0.children.forEach {
                         if (it.key.toString() != user!!.displayName.toString()) {
-                            friendlist.add(FriendInfo(it.key.toString(), it.child("Email").value.toString()))
-
-
+                            friendlist.add(FriendInfo(it.key.toString(),
+                                it.child("Email").value.toString(),
+                                it.child("ID").value.toString()))
                         }
                     }
 
@@ -65,11 +65,13 @@ class FriendListFragment : Fragment() {
 
         //Pass user clicked on to chat frag, to ensure who you are sending to.
         //Pass user from this frag to chat frag.
-        //
+        val frag  = ChatFragment()
+        val args = Bundle()
         adap.onItemClick = {
-                friendInfo -> fragmentManager!!.beginTransaction().replace(R.id.container_profile,ChatFragment())
+            args.putString("key",it.ID)
+            frag.arguments=args
+            fragmentManager!!.beginTransaction().replace(R.id.container_profile,frag)
             .addToBackStack(null).commit()
-
         }
         return view
     }

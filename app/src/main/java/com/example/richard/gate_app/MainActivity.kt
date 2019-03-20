@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main)
         super.onCreate(savedInstanceState)
+        supportFragmentManager.transaction { replace(R.id.container_profile, FriendListFragment()) }
+
 
 
         navigation.setOnNavigationItemSelectedListener {
@@ -29,7 +31,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_friends -> {
                     Log.d("don't","ON CLICKED friends")
                     supportFragmentManager.transaction { replace(R.id.container_profile, FriendListFragment()) }
-
                     true
                 }
 
