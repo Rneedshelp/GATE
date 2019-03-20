@@ -10,7 +10,7 @@ import org.w3c.dom.Text
 class ChatAdapter(private val msg : ArrayList<MessageInfo>) : RecyclerView.Adapter<ChatAdapter.MainViewHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatAdapter.MainViewHolder {
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.fragment_chat,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_chat,parent,false)
         return MainViewHolder(view)
     }
 

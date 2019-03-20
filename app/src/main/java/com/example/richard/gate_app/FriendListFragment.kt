@@ -1,6 +1,7 @@
 package com.example.richard.gate_app
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -25,6 +26,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_recyclermain.*
 import org.jetbrains.anko.coroutines.experimental.asReference
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.support.v4.startActivity
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
@@ -65,13 +67,10 @@ class FriendListFragment : Fragment() {
 
         //Pass user clicked on to chat frag, to ensure who you are sending to.
         //Pass user from this frag to chat frag.
-        val frag  = ChatFragment()
-        val args = Bundle()
+
         adap.onItemClick = {
-            args.putString("key",it.ID)
-            frag.arguments=args
-            fragmentManager!!.beginTransaction().replace(R.id.container_profile,frag)
-            .addToBackStack(null).commit()
+            startActivity<ChatActivity>()
+           // MainActivity().finish()
         }
         return view
     }
