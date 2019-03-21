@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_chat.*
 
 class ChatActivity : AppCompatActivity() {
@@ -16,20 +17,25 @@ class ChatActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_chat)
         super.onCreate(savedInstanceState)
+        initadapter()
+
+
+
+    }
+
+
+    private fun initadapter(){
 
 
         val messagelist = ArrayList<MessageInfo>()
-        val ly : RecyclerView.LayoutManager = LinearLayoutManager(this)
-        val ad : RecyclerView.Adapter<ChatAdapter.MainViewHolder> = ChatAdapter(messagelist)
 
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview_chat)
-        //adapter
+
         recyclerview.setHasFixedSize(true)
         val adap = ChatAdapter(messagelist)
         recyclerview.adapter = adap
         val linearlayout = LinearLayoutManager(this)
         recyclerview.layoutManager = linearlayout
-
 
         msg_button.setOnClickListener{
             if(TextUtils.isEmpty(messageinput.text))
@@ -38,20 +44,13 @@ class ChatActivity : AppCompatActivity() {
             }
             else{
                 var timestamp: Long = System.currentTimeMillis()
-                val user : FriendInfo
                 val toy = MessageInfo(messageinput.text.toString(),timestamp )
                 FirebaseDatabase.getInstance().reference.child("Messages").child(timestamp.toString()).setValue(toy)
+                messagelist.add(toy)
+                adap.notifyDataSetChanged()
             }
 
         }
-
-
-
-
-    }
-
-
-    private fun initadapter(){
 
 
     }

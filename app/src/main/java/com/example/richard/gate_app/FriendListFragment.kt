@@ -70,7 +70,7 @@ class FriendListFragment : Fragment() {
 
         adap.onItemClick = {
             startActivity<ChatActivity>()
-           // MainActivity().finish()
+            MainActivity().finish()
         }
         return view
     }
