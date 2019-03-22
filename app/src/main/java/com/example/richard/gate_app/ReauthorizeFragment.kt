@@ -48,6 +48,7 @@ class ReauthorizeFragment : Fragment() {
                     if(it.isSuccessful){
                         user.updatePassword(password_edit.text.toString())
                         fragmentManager!!.beginTransaction().remove(ReauthorizeFragment()).commit()
+                        MainActivity().finish()
                         startActivity<LogInActivity>()
                     }
                     else{
@@ -62,9 +63,5 @@ class ReauthorizeFragment : Fragment() {
 
 
     }
-
-    //Ask to update email, then go to new frag asking if you want to verify update? enter password and then reauthenticate.
-    //after go to profile frag
-    //For passwoord, go to update pass frag, after doing so reauthenticate, and go back to login activity
 
 }
