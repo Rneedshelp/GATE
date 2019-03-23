@@ -19,18 +19,15 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val user = FirebaseAuth.getInstance().currentUser
 
-        splash_button.setOnClickListener {
-            if (user != null && user.isEmailVerified) {
-                startActivity<LogInActivity>()
-                finish()
-            }
-            else{
-                startActivity<LogInActivity>()
-                finish()
-            }
-
-
+        splash_reg_btn.setOnClickListener {
+            startActivity<SignUpActivity>()
+            finish()
         }
+        splash_login_btn.setOnClickListener{
+            startActivity<LogInActivity>()
+            finish()
+        }
+
 
     }
 }

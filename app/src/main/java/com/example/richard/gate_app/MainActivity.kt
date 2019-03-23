@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
                     {
                         Log.d("don't","ON CLICKED SETTINGS")
                         supportFragmentManager.transaction { replace(R.id.container_profile, ProfileFragment()) }
-                        it.isChecked = true
                         navigation.menu.getItem(0).isChecked= false
                     }
 
@@ -48,8 +47,6 @@ class MainActivity : AppCompatActivity() {
                         Log.d("don't","ON CLICKED friends")
                         supportFragmentManager.transaction { replace(R.id.container_profile, FriendListFragment()) }
                         it.isChecked = true
-                        navigation.menu.getItem(1).isChecked= false
-
 
                     }
                     true

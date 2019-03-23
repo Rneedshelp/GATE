@@ -17,18 +17,59 @@ class ChatActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_chat)
         super.onCreate(savedInstanceState)
-        initadapter()
+        val msglist = ArrayList<MessageInfo>()
+        initadapter(msglist)
+        databaselistener()
+        msg_button.setOnClickListener{
+            if(TextUtils.isEmpty(messageinput.text))
+            {
+                Log.d("hey","error")
+            }
+            else{
+                val timestamp: Long = System.currentTimeMillis()
+                val toy = MessageInfo(messageinput.text.toString() )
+                FirebaseDatabase.getInstance().reference.child("Messages").child(timestamp.toString()).setValue(toy)
+                msglist.add(toy)
+                //initadapter(msglist)
+
+            }
+
+        }
+
+
+
 
     }
 
 
-    fun initadapter(){
+    //seperate button clicker so everytime you call this listener function and then init adapter
+    private fun databaselistener(){
+        val currentDB = object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
 
-        val messagelist = ArrayList<MessageInfo>()
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val messagesDB = ArrayList<MessageInfo>()
+                for (data in p0.children){
+                    val dat = data.value.toString()
+                    messagesDB.add(MessageInfo(dat))
+                }
+                initadapter(messagesDB)
+            }
+
+
+        }
+       FirebaseDatabase.getInstance().getReference().child("Messages").addValueEventListener(currentDB)
+    }
+
+    private fun initadapter(msglist : ArrayList<MessageInfo>){
+
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview_chat)
 
         recyclerview.setHasFixedSize(true)
-        val adap = ChatAdapter(messagelist)
+        val adap = ChatAdapter(msglist)
         recyclerview.adapter = adap
         recyclerview.layoutManager = LinearLayoutManager(this)
 
@@ -39,28 +80,14 @@ class ChatActivity : AppCompatActivity() {
             }
             else{
                 val timestamp: Long = System.currentTimeMillis()
-                val toy = MessageInfo(messageinput.text.toString(),timestamp )
+                val toy = MessageInfo(messageinput.text.toString() )
                 FirebaseDatabase.getInstance().reference.child("Messages").child(timestamp.toString()).setValue(toy)
-                messagelist.add(toy)
+                msglist.add(toy)
                 adap.notifyDataSetChanged()
             }
 
         }
 
-    }
-    //seperate button clicker so everytime you call this listener function and then init adapter
-    private fun databaselistener(){
-        val currentDB = object : ValueEventListener{
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        }
-       // FirebaseDatabase.getInstance().getReference().addValueEventListener()
     }
 
 
