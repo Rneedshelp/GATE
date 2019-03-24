@@ -21,13 +21,14 @@ class ChatAdapter(private val msg : ArrayList<MessageInfo>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: ChatAdapter.MainViewHolder, position: Int) {
         val messageInfo = msg.get(position)
         holder.msgtext.text = messageInfo.textmsg
+        holder.msgtime.text = messageInfo.timestamp
 
     }
 
 
     inner class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        //val msgtime = itemView.findViewById<TextView>(R.id.idtext)
+        val msgtime = itemView.findViewById<TextView>(R.id.time_msg)
         val msgtext= itemView.findViewById<TextView>(R.id.text_msg)
 
 

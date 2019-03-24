@@ -11,34 +11,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_chat.*
+import java.lang.Exception
 
 class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         setContentView(R.layout.activity_chat)
         super.onCreate(savedInstanceState)
+
+        try {
+            val intent = intent
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
+
         val msglist = ArrayList<MessageInfo>()
         initadapter(msglist)
         databaselistener()
-        msg_button.setOnClickListener{
-            if(TextUtils.isEmpty(messageinput.text))
-            {
-                Log.d("hey","error")
-            }
-            else{
-                val timestamp: Long = System.currentTimeMillis()
-                val toy = MessageInfo(messageinput.text.toString() )
-                FirebaseDatabase.getInstance().reference.child("Messages").child(timestamp.toString()).setValue(toy)
-                msglist.add(toy)
-                //initadapter(msglist)
-
-            }
-
-        }
-
-
-
-
+        
     }
 
 
@@ -47,14 +37,14 @@ class ChatActivity : AppCompatActivity() {
         val currentDB = object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
 
-
             }
-
             override fun onDataChange(p0: DataSnapshot) {
                 val messagesDB = ArrayList<MessageInfo>()
                 for (data in p0.children){
-                    val dat = data.value.toString()
-                    messagesDB.add(MessageInfo(dat))
+                    val msgtime = data.child("timestamp").value.toString()
+                    Log.d("hey",msgtime)
+                    val message = data.child("textmsg").value.toString()
+                    messagesDB.add(MessageInfo(message,msgtime))
                 }
                 initadapter(messagesDB)
             }
@@ -72,22 +62,19 @@ class ChatActivity : AppCompatActivity() {
         val adap = ChatAdapter(msglist)
         recyclerview.adapter = adap
         recyclerview.layoutManager = LinearLayoutManager(this)
-
         msg_button.setOnClickListener{
             if(TextUtils.isEmpty(messageinput.text))
             {
                 Log.d("hey","error")
             }
             else{
-                val timestamp: Long = System.currentTimeMillis()
-                val toy = MessageInfo(messageinput.text.toString() )
-                FirebaseDatabase.getInstance().reference.child("Messages").child(timestamp.toString()).setValue(toy)
-                msglist.add(toy)
-                adap.notifyDataSetChanged()
+                val timestamp = System.currentTimeMillis().toString()
+                val msgDatabase = MessageInfo(messageinput.text.toString(),timestamp )
+                FirebaseDatabase.getInstance().reference.child("Messages").child(timestamp).setValue(msgDatabase)
+                msglist.add(msgDatabase)
             }
 
         }
-
     }
 
 

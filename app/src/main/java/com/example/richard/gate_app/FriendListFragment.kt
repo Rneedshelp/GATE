@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_recyclermain.*
 import org.jetbrains.anko.coroutines.experimental.asReference
@@ -65,11 +66,10 @@ class FriendListFragment : Fragment() {
         val linearlayout = LinearLayoutManager(context)
         recyclerview.layoutManager = linearlayout
 
-        //Pass user clicked on to chat frag, to ensure who you are sending to.
-        //Pass user from this frag to chat frag.
-
         adap.onItemClick = {
-            startActivity<ChatActivity>()
+           val intent : Intent = Intent(activity,ChatActivity::class.java)
+            intent.putExtra("user",it.ID)
+            startActivity(intent)
             MainActivity().finish()
         }
         return view
