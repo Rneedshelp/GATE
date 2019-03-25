@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -67,8 +68,11 @@ class FriendListFragment : Fragment() {
         recyclerview.layoutManager = linearlayout
 
         adap.onItemClick = {
-           val intent : Intent = Intent(activity,ChatActivity::class.java)
-            intent.putExtra("user",it.ID)
+           val intent = Intent(activity,ChatActivity::class.java)
+            val id = it.username + user!!.displayName.toString()
+            val ide = id.map (Character::getNumericValue )
+
+            intent.putExtra("chatID", ide.sum().toString())
             startActivity(intent)
             MainActivity().finish()
         }
