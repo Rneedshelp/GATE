@@ -37,6 +37,7 @@ class ChatAdapter(private val msg : ArrayList<MessageInfo>) : RecyclerView.Adapt
         }
 
 
+
     }
 
 
