@@ -44,7 +44,6 @@ class LogInActivity : AppCompatActivity(){
     }
 
     private fun checkcredentials(username : String, pass : String){
-        var security = false
         val credentials = FirebaseDatabase.getInstance().reference.child("users")
         credentials.addListenerForSingleValueEvent(object : ValueEventListener {
            override fun onCancelled(p0: DatabaseError) {

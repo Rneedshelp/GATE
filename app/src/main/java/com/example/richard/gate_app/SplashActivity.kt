@@ -24,8 +24,14 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }
         splash_login_btn.setOnClickListener{
-            startActivity<LogInActivity>()
-            finish()
+            if(FirebaseAuth.getInstance().currentUser != null){
+                startActivity<MainActivity>()
+                finish()
+            }
+            else{
+                startActivity<LogInActivity>()
+                finish()
+            }
         }
 
 

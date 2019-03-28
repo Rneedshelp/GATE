@@ -31,7 +31,7 @@ class ReauthorizeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val user = FirebaseAuth.getInstance().currentUser
+        val user = FirebaseAuth.getInstance().currentUser!!
 
         confirm_button.setOnClickListener {
             if(TextUtils.isEmpty(old_pass.text) || TextUtils.isEmpty(password_edit.text)){
@@ -43,13 +43,13 @@ class ReauthorizeFragment : Fragment() {
             }
             else{
 
-                val cred = EmailAuthProvider.getCredential(user!!.email.toString(),old_pass.text.toString())
+                val cred = EmailAuthProvider.getCredential(user.email.toString(),old_pass.text.toString())
                 user.reauthenticate(cred).addOnCompleteListener {
                     if(it.isSuccessful){
                         user.updatePassword(password_edit.text.toString())
                         fragmentManager!!.beginTransaction().remove(ReauthorizeFragment()).commit()
-                        MainActivity().finish()
                         startActivity<LogInActivity>()
+                        activity!!.finish()
                     }
                     else{
                         old_pass.setError("Password incorrect for current user")

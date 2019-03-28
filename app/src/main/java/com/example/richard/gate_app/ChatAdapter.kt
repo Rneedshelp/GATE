@@ -36,8 +36,6 @@ class ChatAdapter(private val msg : ArrayList<MessageInfo>) : RecyclerView.Adapt
             holder.msgtext.setPadding(10,0,0,0)
         }
 
-
-
     }
 
 

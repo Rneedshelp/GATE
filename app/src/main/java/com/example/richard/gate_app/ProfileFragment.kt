@@ -38,32 +38,24 @@ class ProfileFragment : Fragment() {
             container,
             false
         )
-        //assigning the ViewModel object to a property in the binding class to help use binding adapters in XML
         bind.user = ViewModelProviders.of(this).get(ViewModelClass::class.java)
         bind.editButton.setOnClickListener{
             fragmentManager!!.beginTransaction().replace(R.id.container_profile,UpdateProfileFragment()).addToBackStack(null).commit()
-
         }
         return bind.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val user = FirebaseAuth.getInstance().currentUser
-        if(user != null){
+        val user = FirebaseAuth.getInstance().currentUser!!
             Log.d("WORK",user.displayName.toString())
             username_textview.setText(user.displayName)
             email_textview.setText( user.email)
 
-        }
-        else{
-            Log.d("WORK","user is null")
-
-        }
-
         signout_button.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
             startActivity<LogInActivity>()
+            activity!!.finish()
         }
 
     }

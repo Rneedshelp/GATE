@@ -70,14 +70,14 @@ class SignUpActivity : AppCompatActivity(){
 
     fun createuser(user: FirebaseUser){
         val username = userid_input.text.toString()
-       val pf : UserProfileChangeRequest = UserProfileChangeRequest.Builder()
+        val profile : UserProfileChangeRequest = UserProfileChangeRequest.Builder()
            .setDisplayName(username).build()
 
-        user.updateProfile(pf)
+        user.updateProfile(profile)
 
 
 
-        var reference : DatabaseReference
+        val reference : DatabaseReference
         val usermap = HashMap<String?, String?>()
         usermap["Email"] = user.email
         usermap["ID"] = user.uid
@@ -86,8 +86,6 @@ class SignUpActivity : AppCompatActivity(){
 
         reference = FirebaseDatabase.getInstance().reference.child("users").child(username)
         reference.setValue(usermap)
-        Log.d("WORK",user.displayName.toString())
-
     }
 
 
