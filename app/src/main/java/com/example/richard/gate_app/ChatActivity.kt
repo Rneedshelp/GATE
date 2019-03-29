@@ -22,7 +22,7 @@ class ChatActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_chat)
         super.onCreate(savedInstanceState)
-        
+
         val msglist = ArrayList<MessageInfo>()
         val adap = ChatAdapter(msglist)
         LoadDB(msglist)
