@@ -22,18 +22,13 @@ class ChatActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_chat)
         super.onCreate(savedInstanceState)
+        
         val msglist = ArrayList<MessageInfo>()
         val adap = ChatAdapter(msglist)
-        setAdapter(adap)
         LoadDB(msglist)
-    }
-
-
-    fun onNewMessage(msglist : ArrayList<MessageInfo>){
-        val chatchannel = intent.getStringExtra("chatID")
-        val adap = ChatAdapter(msglist)
         setAdapter(adap)
 
+        val chatchannel = intent.getStringExtra("chatID")
         msg_button.setOnClickListener{
             if(TextUtils.isEmpty(messageinput.text))
             {
@@ -42,11 +37,18 @@ class ChatActivity : AppCompatActivity() {
             else{
                 val timestamp = System.currentTimeMillis().toString()
                 val msgDatabase = MessageInfo(messageinput.text.toString(),timestamp,user!!.displayName.toString() )
-                FirebaseDatabase.getInstance().reference.child("Messages").child(chatchannel.toString()).child(timestamp).setValue(msgDatabase)
+                val DBref = FirebaseDatabase.getInstance().reference.child("Messages").child(chatchannel.toString()).child(timestamp)
+                DBref.setValue(msgDatabase)
 
             }
 
         }
+    }
+
+
+    fun onNewMessage(msglist : ArrayList<MessageInfo>){
+        val adap = ChatAdapter(msglist)
+        setAdapter(adap)
     }
 
    private fun LoadDB(msglist : ArrayList<MessageInfo>) {

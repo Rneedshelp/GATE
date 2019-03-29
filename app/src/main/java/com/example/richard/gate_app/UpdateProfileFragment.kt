@@ -27,7 +27,7 @@ import java.net.PasswordAuthentication
 import java.security.KeyStore
 
 class UpdateProfileFragment : Fragment(){
-
+    val user = FirebaseAuth.getInstance().currentUser
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val bind = DataBindingUtil.inflate<FragmentUpdateBinding>(
             inflater,
@@ -37,11 +37,11 @@ class UpdateProfileFragment : Fragment(){
         )
         //assigning the ViewModel object to a property in the binding class to help use binding adapters in XML
         bind.user = ViewModelProviders.of(this).get(ViewModelClass::class.java)
+        email_edit.setText(user!!.displayName.toString())
         return bind.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val user = FirebaseAuth.getInstance().currentUser
         update_button.setOnClickListener{
             if(TextUtils.isEmpty(email_edit.text)){
                 email_edit.setError("Cannot be Empty!")
@@ -54,19 +54,18 @@ class UpdateProfileFragment : Fragment(){
                 val layout = LinearLayout(activity)
                 layout.addView(pass)
                 dialogbox.setMessage("Enter your Password").setView(layout).setPositiveButton("Confirm"){_, _ ->
-
                     val cred = EmailAuthProvider.getCredential(user!!.email.toString(),pass.text.toString())
                     user.reauthenticate(cred).addOnCompleteListener {
                         if(it.isSuccessful){
 
                             user.updateEmail(email_edit.text.toString()).addOnCompleteListener{
                                 if(it.isSuccessful){
-
                                     FirebaseDatabase.getInstance().reference.child("users")
                                         .child(user.displayName.toString()).child("Email")
                                         .setValue(user.email).addOnCompleteListener{
-                                            fragmentManager!!.beginTransaction().replace(R.id.container_profile,ProfileFragment())
-                                                .addToBackStack(null).commit()
+                                            fragmentManager!!.beginTransaction()
+                                                .replace(R.id.container_profile,ProfileFragment())
+                                                .commit()
                                         }
 
                                 }
@@ -79,9 +78,7 @@ class UpdateProfileFragment : Fragment(){
 
                 }.setNegativeButton("Cancel"){dialog, _ ->
                     dialog.dismiss()
-
                 }
-
                 dialogbox.create().show()
 
             }

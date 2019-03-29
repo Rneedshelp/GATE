@@ -24,28 +24,19 @@
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/email_edit" android:hint="Email Address"/>
-    <EditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:ems="10"
-            android:id="@+id/phone_edit" android:hint="Primary Phone Number"/>
-    <EditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/name_edit" android:hint="First and Last Name"/>
 
     <Button
-            android:text="Update Profile"
+            android:text="Update Email"
             android:layout_width="match_parent"
+            android:textSize="20sp"
+            style="@style/Base.AlertDialog.AppCompat.Light"
+
             android:layout_height="wrap_content" android:id="@+id/update_button"/>
     <Button
             android:text="Change Password"
             android:layout_width="match_parent"
+            android:textSize="20sp"
+
             style="@style/Base.AlertDialog.AppCompat.Light"
             android:layout_height="wrap_content" android:id="@+id/password_button"/>
 
