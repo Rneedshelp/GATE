@@ -3,6 +3,7 @@ package com.example.richard.gate_app
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@ import java.lang.Exception
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ChildEventListener
-
+import java.text.DateFormat
 
 
 class ChatActivity : AppCompatActivity() {
@@ -29,6 +30,8 @@ class ChatActivity : AppCompatActivity() {
         setAdapter(adap)
 
         val chatchannel = intent.getStringExtra("chatID")
+        title = intent.getStringExtra("friend").toUpperCase()
+
         msg_button.setOnClickListener{
             if(TextUtils.isEmpty(messageinput.text))
             {
@@ -39,6 +42,7 @@ class ChatActivity : AppCompatActivity() {
                 val msgDatabase = MessageInfo(messageinput.text.toString(),timestamp,user!!.displayName.toString() )
                 val DBref = FirebaseDatabase.getInstance().reference.child("Messages").child(chatchannel.toString()).child(timestamp)
                 DBref.setValue(msgDatabase)
+
 
             }
 
@@ -61,7 +65,7 @@ class ChatActivity : AppCompatActivity() {
                val sender = dataSnapshot.child("sndr").value.toString()
                val msgtime = dataSnapshot.child("timestamp").value.toString()
                val message = dataSnapshot.child("textmsg").value.toString()
-               msglist.add(MessageInfo(message,msgtime,sender))
+               msglist.add(MessageInfo(message, msgtime,sender))
                onNewMessage(msglist)
 
            }

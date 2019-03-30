@@ -70,9 +70,10 @@ class FriendListFragment : Fragment() {
         adap.onItemClick = {
            val intent = Intent(activity,ChatActivity::class.java)
             val id = it.username + user!!.displayName.toString()
-            val ide = id.map (Character::getNumericValue )
+            val chatid = id.map (Character::getNumericValue )
 
-            intent.putExtra("chatID", ide.sum().toString())
+            intent.putExtra("chatID", chatid.sum().toString())
+            intent.putExtra("friend",it.username)
             startActivity(intent)
             MainActivity().finish()
         }
