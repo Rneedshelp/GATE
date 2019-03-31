@@ -32,14 +32,13 @@ class ChatAdapter(private val msg : ArrayList<MessageInfo>) : RecyclerView.Adapt
         Log.d("hey",messageInfo.sndr)
         if(messageInfo.sndr == FirebaseAuth.getInstance().currentUser!!.displayName.toString())
         {
-            params.marginStart = 550
+            params.marginStart = 500
             params.bottomMargin = 20
             holder.itemView.layoutParams = params
 
-
         }
         else {
-            params.marginStart = 10
+            params.marginStart = 20
             params.bottomMargin = 20
             holder.itemView.layoutParams = params
         }

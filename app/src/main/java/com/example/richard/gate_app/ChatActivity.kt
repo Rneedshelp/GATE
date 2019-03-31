@@ -1,6 +1,7 @@
 package com.example.richard.gate_app
 
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.text.TextUtils
 import android.util.Log
 import androidx.appcompat.app.ActionBar
@@ -15,6 +16,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ChildEventListener
 import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ChatActivity : AppCompatActivity() {
@@ -23,7 +26,8 @@ class ChatActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_chat)
         super.onCreate(savedInstanceState)
-
+        val form = SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.US)
+        var timemsg : String
         val msglist = ArrayList<MessageInfo>()
         val adap = ChatAdapter(msglist)
         LoadDB(msglist)
@@ -38,12 +42,13 @@ class ChatActivity : AppCompatActivity() {
                 Log.d("hey","error")
             }
             else{
-                val timestamp = System.currentTimeMillis().toString()
-                val msgDatabase = MessageInfo(messageinput.text.toString(),timestamp,user!!.displayName.toString() )
-                val DBref = FirebaseDatabase.getInstance().reference.child("Messages").child(chatchannel.toString()).child(timestamp)
+                val timestamp = System.currentTimeMillis()
+                Calendar.getInstance().timeInMillis = timestamp
+                timemsg = form.format(Calendar.getInstance().time).toString()
+                Log.d("hey",timemsg)
+                val msgDatabase = MessageInfo(messageinput.text.toString(),timemsg,user!!.displayName.toString() )
+                val DBref = FirebaseDatabase.getInstance().reference.child("Messages").child(chatchannel.toString()).child(timestamp.toString())
                 DBref.setValue(msgDatabase)
-
-
             }
 
         }
