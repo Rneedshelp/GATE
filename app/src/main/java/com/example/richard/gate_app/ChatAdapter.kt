@@ -1,5 +1,7 @@
 package com.example.richard.gate_app
 
+import android.graphics.Color
+import android.graphics.Color.*
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -11,6 +13,7 @@ import android.widget.TextView
 import androidx.core.view.marginStart
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import org.jetbrains.anko.backgroundColor
 import org.w3c.dom.Text
 
 class ChatAdapter(private val msg : ArrayList<MessageInfo>) : RecyclerView.Adapter<ChatAdapter.MainViewHolder>()  {
@@ -29,18 +32,17 @@ class ChatAdapter(private val msg : ArrayList<MessageInfo>) : RecyclerView.Adapt
         val messageInfo = msg.get(position)
         holder.msgtext.text = messageInfo.textmsg
         holder.msgtime.text = messageInfo.timestamp
-        Log.d("hey",messageInfo.sndr)
         if(messageInfo.sndr == FirebaseAuth.getInstance().currentUser!!.displayName.toString())
         {
             params.marginStart = 500
             params.bottomMargin = 20
             holder.itemView.layoutParams = params
-
         }
         else {
             params.marginStart = 20
             params.bottomMargin = 20
             holder.itemView.layoutParams = params
+            holder.itemView.backgroundColor = LTGRAY
         }
 
     }

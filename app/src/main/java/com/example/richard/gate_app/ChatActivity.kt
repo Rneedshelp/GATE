@@ -15,6 +15,7 @@ import java.lang.Exception
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ChildEventListener
+import org.jetbrains.anko.scrollView
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,6 +50,7 @@ class ChatActivity : AppCompatActivity() {
                 val msgDatabase = MessageInfo(messageinput.text.toString(),timemsg,user!!.displayName.toString() )
                 val DBref = FirebaseDatabase.getInstance().reference.child("Messages").child(chatchannel.toString()).child(timestamp.toString())
                 DBref.setValue(msgDatabase)
+
             }
 
         }
@@ -58,6 +60,7 @@ class ChatActivity : AppCompatActivity() {
     fun onNewMessage(msglist : ArrayList<MessageInfo>){
         val adap = ChatAdapter(msglist)
         setAdapter(adap)
+        recyclerview_chat.scrollToPosition(msglist.size -1)
     }
 
    private fun LoadDB(msglist : ArrayList<MessageInfo>) {

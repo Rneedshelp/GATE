@@ -23,6 +23,7 @@
 
         <Button
                 android:layout_width="match_parent"
+                android:text="@string/msg_sent"
                 android:layout_height="wrap_content"
                 android:id="@+id/msg_button"
         />

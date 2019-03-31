@@ -4,7 +4,5 @@
     <string name="title_friends">Friends</string>
     <string name="title_settings">Settings</string>
     <string name="title_login">Sign In</string>
-    <string name="title_nickname">Sign In</string>
-    <string name="title_Phone">Sign In</string>
-    <string name="title_Email">Sign In</string>
+    <string name="msg_sent">Send Message</string>
 </resources>
