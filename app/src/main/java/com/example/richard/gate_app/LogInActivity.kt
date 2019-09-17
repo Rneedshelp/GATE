@@ -21,7 +21,10 @@ class LogInActivity : AppCompatActivity(){
 
         setContentView(R.layout.login_activity)
         super.onCreate(savedInstanceState)
-
+        cancel_login.setOnClickListener{
+            startActivity<SplashActivity>()
+            finish()
+        }
         login_button.setOnClickListener {
             if (TextUtils.isEmpty(user_login_input.text)) {
                 user_login_input.setError("User with this username or password is not verified or exists.")

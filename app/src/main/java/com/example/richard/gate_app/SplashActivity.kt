@@ -17,7 +17,6 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_splash)
         super.onCreate(savedInstanceState)
-        val user = FirebaseAuth.getInstance().currentUser
 
         splash_reg_btn.setOnClickListener {
             startActivity<SignUpActivity>()

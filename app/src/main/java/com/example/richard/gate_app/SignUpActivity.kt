@@ -32,7 +32,10 @@ class SignUpActivity : AppCompatActivity(){
         val newuser = FirebaseAuth.getInstance()
         setContentView(R.layout.activity_signup)
         super.onCreate(savedInstanceState)
-
+        cancel_signup.setOnClickListener{
+            startActivity<SplashActivity>()
+            finish()
+        }
         reg_button.setOnClickListener{
             if(TextUtils.isEmpty(email_input.text)){
             email_input.setError("Can't be empty")
@@ -58,6 +61,7 @@ class SignUpActivity : AppCompatActivity(){
                                 throw it.exception!!
                             }
                             catch (dupe : FirebaseAuthUserCollisionException){
+                                email_input.setError("error: EMAIL EXISTS ALREADY")
                                 Log.d("don't","error: EMAIL EXISTS ALREADY")
                             }
 

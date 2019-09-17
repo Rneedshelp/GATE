@@ -37,7 +37,6 @@ class UpdateProfileFragment : Fragment(){
         )
         //assigning the ViewModel object to a property in the binding class to help use binding adapters in XML
         bind.user = ViewModelProviders.of(this).get(ViewModelClass::class.java)
-        email_edit.setText(user!!.displayName.toString())
         return bind.root
     }
 
@@ -72,6 +71,7 @@ class UpdateProfileFragment : Fragment(){
                             }
                         }
                         else{
+                            pass.setError("Password is incorrect!")
                             Log.d("he","Something went wrong")
                         }
                     }

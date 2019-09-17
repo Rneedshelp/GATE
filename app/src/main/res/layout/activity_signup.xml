@@ -61,5 +61,16 @@
             android:layout_centerInParent="true"
             android:shadowColor="@color/colorPrimaryDark"/>
 
+    <Button
+            android:id="@+id/cancel_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reg_button"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="11dp"
+            android:text="Cancel"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_centerInParent="true"/>
+
 
 </RelativeLayout>

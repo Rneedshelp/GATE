@@ -48,7 +48,9 @@ class ReauthorizeFragment : Fragment() {
                     if(it.isSuccessful){
                         user.updatePassword(password_edit.text.toString())
                         fragmentManager!!.beginTransaction().remove(ReauthorizeFragment()).commit()
+                        FirebaseAuth.getInstance().signOut()
                         startActivity<LogInActivity>()
+
                         activity!!.finish()
                     }
                     else{
