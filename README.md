@@ -14,12 +14,12 @@ CREATING AN ACCOUNT
 
 
 HOMEPAGE
-![image](https://imgur.com/8nU6kd8)
+![image](https://github.com/Rneedshelp/GATE/blob/master/8nU6kd8%20-%20Imgur.png?raw=true)
 
 
 A CHAT BETWEEN TWO FRIENDS
 ![image](https://i.imgur.com/jSowWyK.png)
 
 SETTINGS MENU
-![image](https://imgur.com/9wVSiWf)
+![image](https://github.com/Rneedshelp/GATE/blob/master/9wVSiWf%20-%20Imgur.png?raw=true)
 
