@@ -1,2 +1,4 @@
 # GATE
-New project I am starting to learn more about firebase and real time data.
+Chatroom app where one can create an account and talk with anyone else privately in the server room.
+
+
