@@ -5,12 +5,12 @@ Chatroom app where one can create an account and talk with anyone else privately
 How the app works and looks.
 
 THE APP 
-![image](https://imgur.com/ejceCLC)
+![image](https://github.com/Rneedshelp/GATE/blob/master/ejceCLC%20-%20Imgur.png?raw=true)
 
 
 
 CREATING AN ACCOUNT
-![image](https://imgur.com/wTsyu2K)
+![image](https://raw.githubusercontent.com/Rneedshelp/GATE/master/wTsyu2K%20-%20Imgur.png)
 
 
 HOMEPAGE
