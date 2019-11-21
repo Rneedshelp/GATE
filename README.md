@@ -13,7 +13,7 @@ THE APP
 
 
 
-![image](https://github.com/Rneedshelp/GATE/blob/master/ejceCLC%20-%20Imgur.png?raw=true)
+![image](https://i.imgur.com/ejceCLC.png)
 
 
 
@@ -26,7 +26,7 @@ CREATING AN ACCOUNT
 
 
 
-![image](https://raw.githubusercontent.com/Rneedshelp/GATE/master/wTsyu2K%20-%20Imgur.png)
+![image](https://i.imgur.com/wTsyu2K.png)
 
 
 HOMEPAGE
