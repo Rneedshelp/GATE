@@ -37,7 +37,7 @@ HOMEPAGE
 
 
 
-![image](https://github.com/Rneedshelp/GATE/blob/master/8nU6kd8%20-%20Imgur.png?raw=true)
+![image](https://i.imgur.com/8nU6kd8.png)
 
 
 A CHAT BETWEEN TWO FRIENDS
@@ -68,5 +68,5 @@ SETTINGS MENU
 
 
 
-![image](https://github.com/Rneedshelp/GATE/blob/master/9wVSiWf%20-%20Imgur.png?raw=true)
+![image](https://i.imgur.com/9wVSiWf.png)
 
